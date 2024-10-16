@@ -1,0 +1,25 @@
+{
+  "name": "Kalygo Embeddings API",
+  "build": {
+    "dockerfile": "../Dockerfile.dev"
+  },
+  "customizations": {
+    "vscode": {
+        "extensions": [
+            "ms-python.python",
+            "ms-python.vscode-pylance",
+            "ms-python.black-formatter",
+            "ms-python.debugpy",
+            "ms-azuretools.vscode-docker"
+        ],
+        "settings": {}
+    }
+  },
+  "forwardPorts": [
+    7000
+  ],
+  "appPort": 7000,
+  "workspaceMount": "source=${localWorkspaceFolder},target=/code,type=bind,consistency=delegated",
+  "workspaceFolder": "/code",
+  "runArgs": [ "--network=agent-network", "--name=embeddings-api" ]
+}
