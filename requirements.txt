@@ -7,3 +7,4 @@ sentence-transformers>=3.0.1,<4.0
 uvicorn>=0.30.5,<=0.31.0
 psycopg>=3.2.1,<4.0
 replicate>=0.31.0,<1.0
+passlib>=1.7.4,<2.0
