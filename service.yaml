@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: us-central1-docker.pkg.dev/kalygo-436411/kalygo-embeddings-api/embeddings-api
+        - image: us-central1-docker.pkg.dev/kalygo-436411/kalygo-embeddings-api/kalygo-embeddings-api
           env:
             - name: POSTGRES_URL
               valueFrom:
