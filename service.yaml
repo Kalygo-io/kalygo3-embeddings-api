@@ -1,18 +1,13 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: fullstack-rag-embeddings-service
+  name: kalygo-embeddings-service
 spec:
   template:
     spec:
       containers:
-        - image: us-central1-docker.pkg.dev/fullstack-rag/fullstack-rag-fastapi/fullstack-rag-fastapi
+        - image: us-central1-docker.pkg.dev/kalygo-436411/kalygo-embeddings-api/embeddings-api
           env:
-            - name: ANTHROPIC_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: ANTHROPIC_API_KEY
-                  key: latest
             - name: POSTGRES_URL
               valueFrom:
                 secretKeyRef:
@@ -27,21 +22,6 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: AUTH_ALGORITHM
-                  key: latest
-            - name: LANGCHAIN_ENDPOINT
-              valueFrom:
-                secretKeyRef:
-                  name: LANGCHAIN_ENDPOINT
-                  key: latest
-            - name: LANGCHAIN_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: LANGCHAIN_API_KEY
-                  key: latest
-            - name: SERPER_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: SERPER_API_KEY
                   key: latest
           ports:
             - containerPort: 8080
