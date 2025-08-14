@@ -43,8 +43,8 @@ Documenting steps of deploying `Fullstack R.A.G.` to GCP
 
 - Check the GCP console after submitting the build: https://console.cloud.google.com/artifacts
   - `touch service.yaml`
-- `gcloud run services replace service.yaml --region us-east1`
-- `touch gcr-service-policy.yaml`
-- `gcloud run services set-iam-policy fullstack-rag-fastapi-service gcr-service-policy.yaml --region us-east1`
+  - `gcloud run services replace service.yaml --region us-east1`
+  - `touch gcr-service-policy.yaml`
+  - `gcloud run services set-iam-policy fullstack-rag-fastapi-service gcr-service-policy.yaml --region us-east1`
 
 ## 
