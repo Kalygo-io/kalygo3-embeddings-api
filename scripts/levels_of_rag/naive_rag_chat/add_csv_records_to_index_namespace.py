@@ -10,7 +10,7 @@ load_dotenv()
 
 api_key = os.getenv("PINECONE_API_KEY")
 index_name = os.getenv("PINECONE_ALL_MINILM_L6_V2_INDEX")
-custom_namespace='aisalon_miami'
+custom_namespace='tad'
 pc = Pinecone(api_key=api_key)
 index = pc.Index(index_name)
 
@@ -18,7 +18,7 @@ print("BEFORE", index.describe_index_stats())
 
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
-with open("./data/kbs/aisalon_miami_kb.csv") as kb_file:
+with open("./data/levels_of_rag/naive_rag_chat/tad_kb.csv") as kb_file:
     print(type(kb_file))
 
     csvreader = csv.reader(kb_file)
