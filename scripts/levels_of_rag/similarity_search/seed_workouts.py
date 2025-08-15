@@ -19,7 +19,7 @@ index = pc.Index(index_name)
 
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
-with open("./data/recommendations/workouts.csv") as kb_file:
+with open("./data/levels_of_rag/similarity_search/workouts.csv") as kb_file:
     print(type(kb_file))
 
     csvreader = csv.reader(kb_file)
