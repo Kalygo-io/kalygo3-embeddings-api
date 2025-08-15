@@ -29,7 +29,7 @@ Documenting steps of deploying `Fullstack R.A.G.` to GCP
 ## Fullstack R.A.G. FastAPI service deployment steps
 
 - Enable the Artifact Registry API on your GCP project
-  - `gcloud artifacts repositories create fullstack-rag-fastapi --repository-format docker --project fullstack-rag --location us-central1` √
+  - `gcloud artifacts repositories create kalygo-embeddings-api --repository-format docker --project kalygo-436411 --location us-central1` √
   - VERIFY: https://console.cloud.google.com/artifacts?project=fullstack-rag
 - `touch Dockerfile.prod`
 - `touch cloudbuild.yaml`
