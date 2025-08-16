@@ -23,8 +23,8 @@ model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', device='cp
 
 # Initialize the token text splitter
 text_splitter = TokenTextSplitter(
-    chunk_size=512,
-    chunk_overlap=50,
+    chunk_size=250,
+    chunk_overlap=125,
     encoding_name="cl100k_base"  # Default encoding for most tokenizers
 )
 
@@ -32,7 +32,7 @@ text_splitter = TokenTextSplitter(
 processed_count = 0
 lock = threading.Lock()
 
-def process_chunk(chunk_data):
+def process_chunk(chunk_data, total_chunks):
     """Process a single chunk and upload to Pinecone"""
     global processed_count
     
@@ -48,8 +48,9 @@ def process_chunk(chunk_data):
                 "id": str(uuid.uuid4()),
                 "values": embedding,
                 "metadata": {
-                    "chunk_id": chunk_id,
+                    "chunk_id": int(chunk_id),
                     "content": chunk,
+                    "total_chunks": total_chunks,
                     "created_at": int(time.time())
                 },
             }
@@ -87,7 +88,7 @@ for batch_start in range(0, total_chunks, batch_size):
     # Process this batch in parallel
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         # Submit all chunks in this batch
-        future_to_chunk = {executor.submit(process_chunk, chunk_data): chunk_data for chunk_data in batch_chunks}
+        future_to_chunk = {executor.submit(process_chunk, chunk_data, total_chunks): chunk_data for chunk_data in batch_chunks}
         
         # Wait for all chunks in this batch to complete
         for future in as_completed(future_to_chunk):
