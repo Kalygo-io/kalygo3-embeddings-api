@@ -16,7 +16,7 @@ index = pc.Index(index_name)
 
 print("BEFORE", index.describe_index_stats())
 
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', device='cpu')
 
 with open("./data/levels_of_rag/naive_rag_chat/tad_kb.csv") as kb_file:
     print(type(kb_file))

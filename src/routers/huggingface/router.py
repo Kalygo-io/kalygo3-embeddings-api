@@ -11,7 +11,7 @@ router = APIRouter(
 
 @router.post("/embedding")
 def create_embeddings(response: Response, jwt: jwt_dependency, textToEmbed: EmbeddingInput):
-    embedding_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+    embedding_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', device='cpu')
     embeddings = embedding_model.encode(textToEmbed.input)
     embeddings_list = embeddings.tolist()
     return {"embedding": embeddings_list, "model": "sentence-transformers/all-MiniLM-L6-v2"}
