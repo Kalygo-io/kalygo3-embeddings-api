@@ -1,6 +1,7 @@
 ---
-video_title: "Development or Dev Containers in 5 minutes"
-video_url: "https://www.youtube.com/watch/Un2Nw00oL2s"
+title: "Development or Dev Containers in 5 minutes"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/Un2Nw00oL2s"
 ---
 
 00:00:00.000 [Music]

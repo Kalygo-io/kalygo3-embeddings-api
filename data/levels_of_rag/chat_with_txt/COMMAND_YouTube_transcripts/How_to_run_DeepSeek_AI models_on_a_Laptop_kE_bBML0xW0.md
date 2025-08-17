@@ -1,6 +1,7 @@
 ---
-video_title: "How to run DeepSeek AI models on a Laptop"
-video_url: "https://www.youtube.com/watch/kE_bBML0xW0"
+title: "How to run DeepSeek AI models on a Laptop"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/kE_bBML0xW0"
 ---
 
 00:00:00.900 [Music]

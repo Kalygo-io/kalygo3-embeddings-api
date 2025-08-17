@@ -1,6 +1,7 @@
 ---
-video_title: "How to deploy a dockerized FastAPI to Cloud Run"
-video_url: "https://www.youtube.com/watch/DQwAX5pS4E8"
+title: "How to deploy a dockerized FastAPI to Cloud Run"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/DQwAX5pS4E8"
 ---
 
 00:00:00.000 No text

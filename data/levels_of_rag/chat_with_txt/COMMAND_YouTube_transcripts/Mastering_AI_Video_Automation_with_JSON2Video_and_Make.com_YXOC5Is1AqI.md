@@ -1,6 +1,7 @@
 ---
-video_title: "Mastering AI Video Automation with JSON2Video and Make.com"
-video_url: "https://www.youtube.com/watch/YXOC5Is1AqI"
+title: "Mastering AI Video Automation with JSON2Video and Make.com"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/YXOC5Is1AqI"
 ---
 
 00:00:00.000 No text

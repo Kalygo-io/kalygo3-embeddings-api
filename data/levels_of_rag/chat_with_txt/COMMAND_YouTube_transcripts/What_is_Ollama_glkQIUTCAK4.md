@@ -1,5 +1,6 @@
 ---
-video_title: "What is Ollama?"
+title: "What is Ollama?"
+description: "Transcript for a video on the COMMAND YouTube channel"
 video_url: "https://www.youtube.com/watch/glkQIUTCAK4"
 ---
 

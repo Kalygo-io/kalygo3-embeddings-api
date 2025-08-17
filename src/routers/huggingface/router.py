@@ -2,6 +2,8 @@ from fastapi import APIRouter, Response, HTTPException
 from sentence_transformers import SentenceTransformer
 import logging
 import os
+import threading
+import time
 
 from src.core.schemas.EmbeddingInput import EmbeddingInput
 from src.deps import jwt_dependency
@@ -20,36 +22,56 @@ router = APIRouter(
     tags=['huggingface']
 )
 
-# Global model instance - load once at startup
+# Global model instance with proper locking
 _embedding_model = None
-_model_loading_failed = False
+_model_loading_lock = threading.Lock()
+_last_loading_attempt = 0
+_loading_cooldown = 30  # seconds
 
 def get_embedding_model():
-    """Get or create the embedding model instance"""
-    global _embedding_model, _model_loading_failed
+    """Get or create the embedding model instance with retry logic"""
+    global _embedding_model, _last_loading_attempt
     
-    # If model loading previously failed, don't retry immediately
-    if _model_loading_failed:
+    # If model is already loaded, return it
+    if _embedding_model is not None:
+        return _embedding_model
+    
+    # Check if we're in cooldown period
+    current_time = time.time()
+    if current_time - _last_loading_attempt < _loading_cooldown:
         raise HTTPException(
-            status_code=500,
-            detail="Embedding model failed to load. Please restart the service."
+            status_code=503,
+            detail="Model is currently loading. Please try again in a few seconds."
         )
     
-    if _embedding_model is None:
+    # Use lock to prevent multiple simultaneous loading attempts
+    with _model_loading_lock:
+        # Double-check if model was loaded while waiting for lock
+        if _embedding_model is not None:
+            return _embedding_model
+        
+        _last_loading_attempt = current_time
+        
         try:
             logger.info("Loading all-MiniLM-L6-v2 model...")
-            # Load model without device specification to avoid meta tensor issues
+            # Load model with explicit CPU device and proper error handling
             _embedding_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+            
+            # Force model to CPU to avoid any device issues
+            if hasattr(_embedding_model, 'to'):
+                _embedding_model.to('cpu')
+            
             logger.info("✅ Model loaded successfully and cached in memory")
+            return _embedding_model
+            
         except Exception as e:
             logger.error(f"Failed to load model: {e}")
-            _model_loading_failed = True
+            # Reset the model to None so we can retry
+            _embedding_model = None
             raise HTTPException(
                 status_code=500, 
-                detail=f"Failed to load embedding model. Error: {str(e)}"
+                detail=f"Failed to load embedding model. Please try again. Error: {str(e)}"
             )
-    
-    return _embedding_model
 
 @router.post("/embedding")
 def create_embeddings(response: Response, textToEmbed: EmbeddingInput):  # Temporarily removed jwt: jwt_dependency
@@ -61,6 +83,26 @@ def create_embeddings(response: Response, textToEmbed: EmbeddingInput):  # Tempo
         
         embeddings_list = embeddings.tolist()
         return {"embedding": embeddings_list, "model": "sentence-transformers/all-MiniLM-L6-v2"}
+    except HTTPException:
+        # Re-raise HTTP exceptions as-is
+        raise
     except Exception as e:
         logger.error(f"Error generating embeddings: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to generate embeddings: {str(e)}")
+
+@router.get("/health")
+def health_check():
+    """Health check endpoint to verify model status"""
+    try:
+        model = get_embedding_model()
+        return {
+            "status": "healthy",
+            "model": "sentence-transformers/all-MiniLM-L6-v2",
+            "model_loaded": model is not None
+        }
+    except Exception as e:
+        return {
+            "status": "unhealthy",
+            "error": str(e),
+            "model_loaded": False
+        }

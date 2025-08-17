@@ -13,6 +13,11 @@ Self-hosted Embeddings API for "Fullstack Vectors" course
 - `pip install -r requirements.txt`
 - `uvicorn src.main:app --host 0.0.0.0 --port 7000 --proxy-headers --reload`
 
+## How to kill the Embedding API running on port 7000
+
+- `netstat -tlnp 2>/dev/null | grep :7000`
+- `kill -9 <PORT_NUMBER_HERE>`
+
 ## How to save versions of top-level packages
 
 - pip install pipreqs

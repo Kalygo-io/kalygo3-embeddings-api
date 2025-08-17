@@ -1,6 +1,7 @@
 ---
-video_title: "Understanding RAG Agents with Pinecone and LangChain"
-video_url: "https://www.youtube.com/watch/bsVrSenBmn0"
+title: "Understanding RAG Agents with Pinecone and LangChain"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/bsVrSenBmn0"
 ---
 
 00:00:00.000 No text

@@ -1,6 +1,7 @@
 ---
-video_title: "How to use a vector database [Node.js + Chroma + OpenAI]"
-video_url: "https://www.youtube.com/watch/OYPWf5bWrrU"
+title: "How to use a vector database [Node.js + Chroma + OpenAI]"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/OYPWf5bWrrU"
 ---
 
 00:00:02.670 [Music]

@@ -1,6 +1,7 @@
 ---
-video_title: "Automate Deployments to GCP ☁️ Cloud Run 🏃 with GitHub Actions"
-video_url: "https://www.youtube.com/watch/kZYsoav104w"
+title: "Automate Deployments to GCP ☁️ Cloud Run 🏃 with GitHub Actions"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/kZYsoav104w"
 ---
 
 00:00:01.920 there are many tools we could use for

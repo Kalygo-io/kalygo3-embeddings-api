@@ -1,6 +1,7 @@
 ---
-video_title: "The Fundamentals of CrewAI and AgentOps"
-video_url: "https://www.youtube.com/watch/X1tH1LKs9M0"
+title: "The Fundamentals of CrewAI and AgentOps"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/X1tH1LKs9M0"
 ---
 
 00:00:00.000 No text

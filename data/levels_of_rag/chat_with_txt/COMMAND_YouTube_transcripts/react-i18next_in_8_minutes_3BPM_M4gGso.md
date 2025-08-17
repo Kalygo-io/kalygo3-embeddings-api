@@ -1,6 +1,7 @@
 ---
-video_title: "react-i18next in 8 minutes"
-video_url: "https://www.youtube.com/watch/3BPM_M4gGso"
+title: "react-i18next in 8 minutes"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/3BPM_M4gGso"
 ---
 
 00:00:00.000 No text

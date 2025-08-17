@@ -1,6 +1,7 @@
 ---
-video_title: "How to set up Llama Stack in 14 minutes"
-video_url: "https://www.youtube.com/watch/KCZSQIX5ET8"
+title: "How to set up Llama Stack in 14 minutes"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/KCZSQIX5ET8"
 ---
 
 00:00:00.000 No text

@@ -1,6 +1,7 @@
 ---
-video_title: "Performance Testing Fastify vs. Express [EXPERIMENT]"
-video_url: "https://www.youtube.com/watch/7TUZjl-hjro"
+title: "Performance Testing Fastify vs. Express [EXPERIMENT]"
+description: "Transcript for a video on the COMMAND YouTube channel"
+url: "https://www.youtube.com/watch/7TUZjl-hjro"
 ---
 
 00:00:03.600 here we are on fastify's website
