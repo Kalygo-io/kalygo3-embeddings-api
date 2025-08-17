@@ -1,7 +1,7 @@
 ## Upload .csv of QnA's to seed the Pinecone Index
 
-- `python scripts/levels_of_rag/reranking_chat/add_csv_records_to_index_namespace.py`
-- `python scripts/levels_of_rag/reranking_chat/delete_records_in_pinecone_namespace.py`
+- `python scripts/levels_of_rag/chat_with_txt/add_csv_records_to_index_namespace.py`
+- `python scripts/levels_of_rag/chat_with_txt/delete_records_in_pinecone_namespace.py`
 
 ## Link to Pinecone
 

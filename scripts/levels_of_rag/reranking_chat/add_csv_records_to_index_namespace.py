@@ -67,7 +67,7 @@ def process_chunk(chunk_data, total_chunks):
     return chunk_id
 
 # Read and chunk the text file
-with open("./data/levels_of_rag/reranking_chat/the_boston_cooking_school_cookbook.txt", "r", encoding="utf-8") as kb_file:
+with open("./data/levels_of_rag/chat_with_txt/the_boston_cooking_school_cookbook.txt", "r", encoding="utf-8") as kb_file:
     text_content = kb_file.read()
     
 # Split the text into chunks
