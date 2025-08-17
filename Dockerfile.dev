@@ -15,6 +15,11 @@ COPY ./src ./src
 
 ENV PYTHONPATH=/code
 
+# The download_model.py script should remain in the scripts/ directory.
+# To download the embedding model during build time, ensure the script is copied into the image before running it:
+COPY ./scripts/download_model.py ./scripts/download_model.py
+RUN python scripts/download_model.py
+
 # set up aliases
 RUN echo "alias ga='git add'" >> ~/.bashrc \
   && echo "alias gaa='git add .'" >> ~/.bashrc \
