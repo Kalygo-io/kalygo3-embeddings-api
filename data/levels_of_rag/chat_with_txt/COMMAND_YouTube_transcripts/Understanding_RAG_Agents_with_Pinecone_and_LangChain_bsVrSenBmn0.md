@@ -2,6 +2,7 @@
 title: "Understanding RAG Agents with Pinecone and LangChain"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/bsVrSenBmn0"
+publish_date: "8-22-2024"
 ---
 
 00:00:00.000 No text

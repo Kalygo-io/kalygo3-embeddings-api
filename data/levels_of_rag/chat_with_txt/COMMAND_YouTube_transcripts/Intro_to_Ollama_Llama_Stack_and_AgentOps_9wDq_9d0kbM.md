@@ -2,6 +2,7 @@
 title: "Intro to Ollama, Llama Stack, and AgentOps"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/9wDq_9d0kbM"
+publish_date: "12-10-2024"
 ---
 
 00:00:00.320 the development of a llama stack and

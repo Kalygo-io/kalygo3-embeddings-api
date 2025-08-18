@@ -2,6 +2,7 @@
 title: "What is Ollama?"
 description: "Transcript for a video on the COMMAND YouTube channel"
 video_url: "https://www.youtube.com/watch/glkQIUTCAK4"
+publish_date: "12-10-2024"
 ---
 
 00:00:01.920 olama is a tool that allows you to run

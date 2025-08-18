@@ -2,6 +2,7 @@
 title: "The Fundamentals of CrewAI and AgentOps"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/X1tH1LKs9M0"
+publish_date: "10-8-2024"
 ---
 
 00:00:00.000 No text

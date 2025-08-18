@@ -2,6 +2,7 @@
 title: "Build a private R.A.G. Assistant with CrewAI, Ollama, & AgentOps"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/MDb81aT0V4w"
+publish_date: "12-29-2024"
 ---
 
 00:00:00.000 [Music]

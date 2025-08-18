@@ -2,6 +2,7 @@
 title: "Code an OpenAI integration with Python and Flask"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/Vo1_9-qVCM4"
+publish_date: "5-11-2023"
 ---
 
 00:00:00.120 in this video we will look at how to

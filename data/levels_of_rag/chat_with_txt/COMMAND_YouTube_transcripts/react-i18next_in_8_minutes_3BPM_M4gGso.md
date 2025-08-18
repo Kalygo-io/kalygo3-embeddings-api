@@ -2,6 +2,7 @@
 title: "react-i18next in 8 minutes"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/3BPM_M4gGso"
+publish_date: "6-4-2022"
 ---
 
 00:00:00.000 No text

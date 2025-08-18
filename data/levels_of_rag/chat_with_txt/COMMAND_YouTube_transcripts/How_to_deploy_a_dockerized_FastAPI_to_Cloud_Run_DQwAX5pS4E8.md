@@ -2,6 +2,7 @@
 title: "How to deploy a dockerized FastAPI to Cloud Run"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/DQwAX5pS4E8"
+publish_date: "5-2-2024"
 ---
 
 00:00:00.000 No text

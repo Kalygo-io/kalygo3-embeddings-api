@@ -2,6 +2,7 @@
 title: "Mastering AI Video Automation with JSON2Video and Make.com"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/YXOC5Is1AqI"
+publish_date: "4-15-2025"
 ---
 
 00:00:00.000 No text

@@ -2,6 +2,7 @@
 title: "Code a D3.js timeline with React + Typescript"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/A8T3KghaipA"
+publish_date: "4-11-2023"
 ---
 
 00:00:02.159 in this video we are going to learn how

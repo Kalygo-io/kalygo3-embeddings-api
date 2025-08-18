@@ -2,6 +2,7 @@
 title: "How to use a vector database [Node.js + Chroma + OpenAI]"
 description: "Transcript for a video on the COMMAND YouTube channel"
 url: "https://www.youtube.com/watch/OYPWf5bWrrU"
+publish_date: "6-29-2023"
 ---
 
 00:00:02.670 [Music]
