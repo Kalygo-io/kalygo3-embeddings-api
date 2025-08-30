@@ -13,7 +13,7 @@ load_dotenv()
 
 api_key = os.getenv("PINECONE_API_KEY")
 index_name = os.getenv("PINECONE_ALL_MINILM_L6_V2_INDEX")
-custom_namespace='cookbook'
+custom_namespace='chat_with_txt'
 pc = Pinecone(api_key=api_key)
 index = pc.Index(index_name)
 
@@ -51,7 +51,7 @@ def process_chunk(chunk_data, total_chunks):
                     "chunk_id": int(chunk_id),
                     "content": chunk,
                     "total_chunks": total_chunks,
-                    "created_at": int(time.time())
+                    "created_at": int(time.time() * 1000)
                 },
             }
         ],
