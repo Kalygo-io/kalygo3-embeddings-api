@@ -20,7 +20,7 @@ async def get_current_user(request: Request):
         authorization = request.headers.get("Authorization")
 
         print(authorization)
-        print(SECRET_KEY)
+        print('SECRET_KEY: ', SECRET_KEY)
         
         if not authorization:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
