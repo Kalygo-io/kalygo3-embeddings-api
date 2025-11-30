@@ -22,6 +22,8 @@ async def get_current_user(request: Request):
         print(authorization)
         print('SECRET_KEY: ', SECRET_KEY)
         print('os.getenv(AUTH_SECRET_KEY): ', os.getenv('AUTH_SECRET_KEY'))
+        print('ALGORITHM: ', ALGORITHM)
+        print('os.getenv(AUTH_ALGORITHM): ', os.getenv('AUTH_ALGORITHM'))
         
         if not authorization:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
