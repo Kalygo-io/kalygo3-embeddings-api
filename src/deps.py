@@ -16,10 +16,18 @@ bcrypt_context = CryptContext(schemes=["sha256_crypt"])
 
 async def get_current_user(request: Request):
     try:
-        token = request.cookies.get("jwt")
-
-        if not token:
+        # Extract token from Authorization Bearer header
+        authorization = request.headers.get("Authorization")
+        
+        if not authorization:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
+        
+        # Extract token from "Bearer <token>" format
+        parts = authorization.split(" ")
+        if len(parts) != 2 or parts[0].lower() != "bearer":
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authorization header format")
+        
+        token = parts[1]
 
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
