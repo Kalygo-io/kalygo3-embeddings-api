@@ -35,5 +35,3 @@ curl -X POST http://localhost:7000/huggingface/embedding \
 
 - https://www.sbert.net/docs/sentence_transformer/pretrained_models.html#original-models
 - https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 (384 dimensional vectors)
-
-## Seed Pinecone namespace
