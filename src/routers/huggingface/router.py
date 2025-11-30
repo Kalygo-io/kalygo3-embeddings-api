@@ -74,7 +74,7 @@ def get_embedding_model():
             )
 
 @router.post("/embedding")
-def create_embeddings(response: Response, textToEmbed: EmbeddingInput):  # Temporarily removed jwt: jwt_dependency
+def create_embeddings(response: Response, textToEmbed: EmbeddingInput, user: jwt_dependency):
     try:
         embedding_model = get_embedding_model()
         
