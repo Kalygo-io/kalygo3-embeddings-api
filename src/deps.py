@@ -29,6 +29,9 @@ async def get_current_user(request: Request):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
         
         # Extract token from "Bearer <token>" format
+
+        print('authorization: ', authorization)
+
         parts = authorization.split(" ")
         if len(parts) != 2 or parts[0].lower() != "bearer":
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authorization header format")
@@ -38,6 +41,8 @@ async def get_current_user(request: Request):
         print(token)
 
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+
+        print('payload: ', payload)
 
         email: str | None = payload.get('sub')
         account_id: str = payload.get('id')
