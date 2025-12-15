@@ -8,7 +8,7 @@ steps:
     entrypoint: "bash"
     args:
       - "-c"
-      - "cat src/routers/noRagAgent/router.py"
+      - "cat src/routers/huggingface/router.py"
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
