@@ -1,16 +1,27 @@
 steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
+  - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
     args:
-      - '-c'
-      - 'ls -l'
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
+      - "-c"
+      - "ls -l"
+  - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
     args:
-      - '-c'
-      - 'cat src/routers/noRagAgent/router.py'
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-f', 'Dockerfile.prod', '-t', 'us-central1-docker.pkg.dev/fullstack-rag/fullstack-rag-fastapi/fullstack-rag-fastapi:latest', '.']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/fullstack-rag/fullstack-rag-fastapi/fullstack-rag-fastapi:latest']
-
+      - "-c"
+      - "cat src/routers/noRagAgent/router.py"
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-f",
+        "Dockerfile.prod",
+        "-t",
+        "us-central1-docker.pkg.dev/kalygo-436411/kalygo-embeddings-api/kalygo-embeddings-api:latest",
+        ".",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "us-central1-docker.pkg.dev/kalygo-436411/kalygo-embeddings-api/kalygo-embeddings-api:latest",
+      ]
