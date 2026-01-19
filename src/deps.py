@@ -90,9 +90,16 @@ async def get_current_user_or_api_key(
     try:
         authorization = request.headers.get("Authorization", "")
         
+        print(f'--- Authorization header present: {bool(authorization)} ---')
+        
         # Check if it's a Bearer token (JWT format)
         if authorization.startswith("Bearer "):
             token = authorization.replace("Bearer ", "").strip()
+            
+            print(f'--- Token extracted, length: {len(token)} ---')
+            print(f'--- Token preview: {token[:20]}... ---')
+            print(f'--- SECRET_KEY present: {bool(SECRET_KEY)} ---')
+            print(f'--- ALGORITHM: {ALGORITHM} ---')
             
             # Try to decode as JWT
             try:
@@ -107,10 +114,18 @@ async def get_current_user_or_api_key(
                         'id': int(account_id) if isinstance(account_id, str) else account_id,
                         'auth_type': 'jwt'
                     }
-            except (JWTError, KeyError, ValueError):
+                else:
+                    print('--- JWT decoded but no email found in payload ---')
+            except JWTError as e:
+                # Log JWT errors for debugging
+                print(f'--- JWT decode error: {type(e).__name__}: {str(e)} ---')
                 # Not a valid JWT, might be an API key
                 pass
-    except Exception:
+            except (KeyError, ValueError) as e:
+                print(f'--- JWT payload error: {type(e).__name__}: {str(e)} ---')
+                pass
+    except Exception as e:
+        print(f'--- Unexpected error in JWT auth: {type(e).__name__}: {str(e)} ---')
         pass
     
     # Try API key from headers
@@ -122,12 +137,14 @@ async def get_current_user_or_api_key(
         potential_key = auth_header.replace("Bearer ", "").strip()
         if potential_key.startswith("kalygo_"):
             api_key = potential_key
+            print(f'--- API key detected in Authorization header ---')
     
     # Also check X-API-Key header
     if not api_key:
         x_api_key = request.headers.get("X-API-Key", "").strip()
         if x_api_key.startswith("kalygo_"):
             api_key = x_api_key
+            print(f'--- API key detected in X-API-Key header ---')
     
     if api_key:
         print(f'--- Attempting API Key authentication ---')
@@ -158,6 +175,10 @@ async def get_current_user_or_api_key(
                         'auth_type': 'api_key',
                         'api_key_id': api_key_record.id  # Useful for logging
                     }
+            else:
+                print(f'--- API key hash verification failed ---')
+        else:
+            print(f'--- No active API key found with prefix: {key_prefix} ---')
     
     # No valid auth found
     print('--- Authentication failed - no valid JWT or API key found ---')
