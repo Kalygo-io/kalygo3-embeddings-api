@@ -6,7 +6,7 @@ import threading
 import time
 
 from src.core.schemas.EmbeddingInput import EmbeddingInput
-from src.deps import jwt_dependency
+from src.deps import jwt_dependency, auth_dependency
 
 # Configure logging to reduce verbose output
 logging.basicConfig(level=logging.INFO)
@@ -74,19 +74,34 @@ def get_embedding_model():
             )
 
 @router.post("/embedding")
-def create_embeddings(response: Response, textToEmbed: EmbeddingInput, user: jwt_dependency):
+def create_embeddings(response: Response, textToEmbed: EmbeddingInput, user: auth_dependency):
+    print("=" * 80)
+    print("🔵 create_embeddings: Function called")
+    print(f"🔵 create_embeddings: user = {user}")
+    print(f"🔵 create_embeddings: auth_type = {user.get('auth_type', 'unknown')}")
+    print(f"🔵 create_embeddings: textToEmbed = {textToEmbed}")
+    print(f"🔵 create_embeddings: textToEmbed.input = {textToEmbed.input if hasattr(textToEmbed, 'input') else 'N/A'}")
+    
     try:
+        print("🔵 create_embeddings: About to get embedding model...")
         embedding_model = get_embedding_model()
+        print(f"🔵 create_embeddings: Got embedding model: {embedding_model}")
         
         # Generate embeddings - ensure input is a list
+        print(f"🔵 create_embeddings: About to encode input: {[textToEmbed.input]}")
         embeddings = embedding_model.encode([textToEmbed.input], show_progress_bar=False)
+        print(f"🔵 create_embeddings: Generated embeddings, shape: {embeddings.shape if hasattr(embeddings, 'shape') else 'N/A'}")
         
         embeddings_list = embeddings.tolist()
+        print(f"🔵 create_embeddings: Converted to list, length: {len(embeddings_list)}")
+        print("🔵 create_embeddings: About to return response")
         return {"embedding": embeddings_list, "model": "sentence-transformers/all-MiniLM-L6-v2"}
-    except HTTPException:
+    except HTTPException as http_ex:
         # Re-raise HTTP exceptions as-is
+        print(f"🔴 create_embeddings: HTTPException caught - status_code: {http_ex.status_code}, detail: {http_ex.detail}")
         raise
     except Exception as e:
+        print(f"🔴 create_embeddings: Exception caught - type: {type(e).__name__}, message: {str(e)}")
         logger.error(f"Error generating embeddings: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to generate embeddings: {str(e)}")
 
