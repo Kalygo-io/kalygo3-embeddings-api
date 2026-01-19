@@ -6,13 +6,13 @@ import os
 
 load_dotenv()
 
-DATABASE_URL = os.getenv('DATABASE_URL')
+POSTGRES_URL = os.getenv('POSTGRES_URL')
 
-if not DATABASE_URL:
-    raise ValueError("DATABASE_URL environment variable is not set")
+if not POSTGRES_URL:
+    raise ValueError("POSTGRES_URL environment variable is not set")
 
 # Create engine
-engine = create_engine(DATABASE_URL)
+engine = create_engine(POSTGRES_URL)
 
 # Create SessionLocal class
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
