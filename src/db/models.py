@@ -32,4 +32,3 @@ class ApiKey(Base):
     status = Column(SQLEnum(ApiKeyStatus), nullable=False, default=ApiKeyStatus.ACTIVE, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_used_at = Column(DateTime(timezone=True), nullable=True)
-    revoked_at = Column(DateTime(timezone=True), nullable=True)
