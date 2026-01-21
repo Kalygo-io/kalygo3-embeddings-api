@@ -1,5 +1,8 @@
 import secrets
-import hashlib
+from passlib.context import CryptContext
+
+# Use the same hashing scheme as the AI API (sha256_crypt)
+crypt_context = CryptContext(schemes=["sha256_crypt"])
 
 
 def generate_api_key() -> str:
@@ -15,18 +18,23 @@ def generate_api_key() -> str:
 
 def hash_api_key(api_key: str) -> str:
     """
-    Hash an API key using SHA-256.
-    This is what gets stored in the database.
+    Hash an API key using sha256_crypt (passlib).
+    This must match the hashing method used by the AI API.
     """
-    return hashlib.sha256(api_key.encode()).hexdigest()
+    return crypt_context.hash(api_key)
 
 
 def verify_api_key(plaintext_key: str, hashed_key: str) -> bool:
     """
     Verify a plaintext API key against a stored hash.
+    Uses passlib's sha256_crypt verification.
     Returns True if they match, False otherwise.
     """
-    return hash_api_key(plaintext_key) == hashed_key
+    try:
+        return crypt_context.verify(plaintext_key, hashed_key)
+    except Exception as e:
+        print(f"[API KEY UTILS] Error verifying API key: {e}")
+        return False
 
 
 def get_key_prefix(api_key: str, length: int = 20) -> str:

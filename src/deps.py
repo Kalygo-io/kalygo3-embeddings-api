@@ -148,6 +148,9 @@ async def get_current_user_or_api_key(
     
     if api_key:
         print(f'--- Attempting API Key authentication ---')
+        print(f'--- API key length: {len(api_key)} ---')
+        print(f'--- API key full preview: {api_key[:30]}... ---')
+        
         # Extract prefix for fast lookup
         key_prefix = api_key[:20] if len(api_key) >= 20 else api_key
         
@@ -158,8 +161,17 @@ async def get_current_user_or_api_key(
         ).first()
         
         if api_key_record:
+            print(f'--- Found API key record in database (id: {api_key_record.id}) ---')
+            print(f'--- Stored key_prefix: {api_key_record.key_prefix} ---')
+            print(f'--- Verifying hash with passlib sha256_crypt... ---')
+            
             # Verify the full key against hash
             from .utils.api_key_utils import verify_api_key
+            
+            # Debug: show stored hash format
+            stored_hash = api_key_record.key_hash
+            print(f'--- Stored key hash (preview): {stored_hash[:30]}... ---')
+            
             if verify_api_key(api_key, api_key_record.key_hash):
                 # Update last_used_at
                 api_key_record.last_used_at = func.now()

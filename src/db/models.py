@@ -16,8 +16,6 @@ class Account(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True, nullable=False)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
 
 class ApiKey(Base):
@@ -29,6 +27,6 @@ class ApiKey(Base):
     key_prefix = Column(String, nullable=False, index=True)  # First 20 chars for lookup
     key_hash = Column(String, nullable=False)  # Hashed full key
     name = Column(String, nullable=True)  # Optional name/description
-    status = Column(SQLEnum(ApiKeyStatus), nullable=False, default=ApiKeyStatus.ACTIVE, index=True)
+    status = Column(SQLEnum(ApiKeyStatus, values_callable=lambda x: [e.value for e in x], name='api_key_status_enum', create_type=False), nullable=False, default=ApiKeyStatus.ACTIVE, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_used_at = Column(DateTime(timezone=True), nullable=True)
